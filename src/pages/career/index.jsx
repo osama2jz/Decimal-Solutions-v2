@@ -1,13 +1,12 @@
 import { Box, SimpleGrid, Stack, Title, useMantineTheme } from "@mantine/core";
 import React from "react";
+import { Outlet } from "react-router-dom";
 import one from "../../assets/1.svg";
 import two from "../../assets/2.svg";
 import three from "../../assets/3.svg";
 import four from "../../assets/4.svg";
 import join from "../../assets/join.svg";
 import { useStyles } from "./styles";
-import AllJobs from "./AllJobs";
-import { Outlet } from "react-router-dom";
 
 const Career = () => {
   const { classes } = useStyles();

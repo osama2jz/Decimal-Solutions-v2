@@ -10,14 +10,16 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
+import moment from "moment";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ArrowNarrowLeft } from "tabler-icons-react";
 
 const ViewJob = () => {
   const navigate = useNavigate();
   const theme = useMantineTheme();
   const isMobile = useMediaQuery("(max-width: 1000px)");
+  const { job } = useLocation().state;
   return (
     <Box p={isMobile ? "20px" : "100px"}>
       <Anchor
@@ -28,7 +30,7 @@ const ViewJob = () => {
         <ArrowNarrowLeft size={"18px"} /> Back
       </Anchor>
       <Title align="center" color={theme.colors.purple} fw={400}>
-        Software Developer
+        {job?.title}
       </Title>
       <Title order={4} align="center" fw={200}>
         Deicmal Solutions
@@ -48,39 +50,43 @@ const ViewJob = () => {
       <Stack mb="lg" spacing={"xs"}>
         <Flex gap="md">
           <Text fw="bold">Minimum Qualifications: </Text>
-          <Text>Bachelors</Text>
+          <Text>{job?.minimumQualifications}</Text>
         </Flex>
         <Flex gap="md">
           <Text fw="bold">Experience Level: </Text>
-          <Text>Bachelors</Text>
+          <Text>{job?.jobLevel}</Text>
         </Flex>
         <Flex gap="md">
           <Text fw="bold">Minimum Experience: </Text>
-          <Text>Bachelors</Text>
+          <Text>{job?.minimumExperience}</Text>
         </Flex>
         <Flex gap="md">
           <Text fw="bold">Location: </Text>
-          <Text>Bachelors</Text>
+          <Text>{job?.location}</Text>
         </Flex>
         <Flex gap="md">
           <Text fw="bold">Job Type: </Text>
-          <Text>Bachelors</Text>
+          <Text>{job?.type}</Text>
         </Flex>
         <Flex gap="md">
           <Text fw="bold">Application Deadline: </Text>
-          <Text>Bachelors</Text>
+          <Text>
+            {moment(job?.jobApplicationDeadline).format("DD MMMM YYYY")}
+          </Text>
         </Flex>
         <Flex gap="md">
           <Text fw="bold">Salary Range: </Text>
-          <Text>Bachelors</Text>
+          <Text>
+            PKR {job?.minimumJobSalary} - {job?.maximumJobSalary}
+          </Text>
         </Flex>
       </Stack>
       <Title order={4}>Job Description</Title>
-      <Text>Job</Text>
+      <Text>{job?.description}</Text>
       <Title order={4}>Job Requirements</Title>
-      <Text>Job</Text>
+      <Text>{job?.jobRequirements}</Text>
       <Title order={4}>Job Responsibilities</Title>
-      <Text>Job</Text>
+      <Text>{job?.jobResponsibilities}</Text>
     </Box>
   );
 };

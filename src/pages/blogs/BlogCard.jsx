@@ -18,20 +18,20 @@ const BlogCard = ({ obj, ind }) => {
       }}
       onClick={() => navigate("/view-blog", { state: { blogData: obj } })}
     >
-      <Image src={obj?.picture} height={"280px"} />
+      <Image src={obj?.blogImage} height={"280px"} />
       <Text fz="xs" align="left">
         Published:{" "}
-        {new Date(obj?.date_time).getDate() +
+        {new Date(obj?.createdAt).getDate() +
           "-" +
-          new Date(obj?.date_time).getMonth() +
+          new Date(obj?.createdAt).getMonth() +
           "-" +
-          new Date(obj?.date_time).getFullYear()}
+          new Date(obj?.createdAt).getFullYear()}
       </Text>
       <Text fw={"bold"} fz={"lg"} color={theme.colors.blue} align="left">
-        {obj?.title}
+        {obj?.blogTitle}
       </Text>
-      <Text fz="lg" align="left">
-        {obj?.short_description}
+      <Text fz="md" align="left" lineClamp={3}>
+        {obj?.blogDescription}
       </Text>
     </Stack>
   );

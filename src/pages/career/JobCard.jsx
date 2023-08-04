@@ -22,10 +22,10 @@ const JobCard = ({ obj }) => {
         <Text fw={"bold"} fz="lg">
           {obj?.title}
         </Text>
-        <Text>Experience: {obj?.experience}</Text>
+        <Text>Experience: {obj?.minimumExperience}</Text>
       </Stack>
-      <Text>Positions: {obj?.position}</Text>
-      <Text>Job Type: {obj?.jobType}</Text>
+      <Text>Positions: {obj?.vacancies}</Text>
+      <Text>Job Type: {obj?.type}</Text>
       <Anchor
         color={theme.colors.purple}
         style={{ display: "flex", alignItems: "center" }}

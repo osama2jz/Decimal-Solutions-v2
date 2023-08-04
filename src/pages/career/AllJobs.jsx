@@ -1,17 +1,37 @@
-import { Flex, Image, SimpleGrid, Stack, Text, Title, useMantineTheme } from "@mantine/core";
+import {
+  Flex,
+  Image,
+  Loader,
+  SimpleGrid,
+  Stack,
+  Text,
+  Title,
+  useMantineTheme,
+} from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import JobCard from "./JobCard";
 import funnyGroup from "../../assets/funnyGroup.jpg";
 import girlLaptop from "../../assets/girlLaptop.jpg";
 import handWriting from "../../assets/handWriting.jpg";
 import amazedGroup from "../../assets/amazedGroup.jpg";
+import axios from "axios";
+import { backendUrl } from "../../constants";
 
 const AllJobs = () => {
   const isMobile = useMediaQuery("(max-width: 1000px)");
   const isMobile2 = useMediaQuery("(max-width: 1285px)");
-  const [jobs, setJobs] = useState([{ title: "ABC" }, {}, {}]);
   const theme = useMantineTheme();
+  const [isLoading, setIsLoading] = useState(false);
+  const [jobs, setJobs] = useState([]);
+
+  useEffect(() => {
+    setIsLoading(true);
+    axios.get(backendUrl + "/api/v1/web/jobs").then((res) => {
+      setJobs(res.data.data);
+      setIsLoading(false);
+    });
+  }, []);
 
   return (
     <>
@@ -52,9 +72,13 @@ const AllJobs = () => {
         </Title>
       </Stack>
       <Stack w={isMobile ? "90%" : "60%"} m="auto" py="xl">
-        {jobs.map((obj, ind) => {
-          return <JobCard obj={obj} key={ind} />;
-        })}
+        {isLoading ? (
+          <Loader color={theme.colors.purple} m="auto" />
+        ) : (
+          jobs.map((obj, ind) => {
+            return <JobCard obj={obj} key={ind} />;
+          })
+        )}
       </Stack>
     </>
   );
