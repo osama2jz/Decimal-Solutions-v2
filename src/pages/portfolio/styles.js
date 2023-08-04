@@ -1,6 +1,6 @@
 import { createStyles } from "@mantine/core";
 import img from "../../assets/portfolio.png";
-import img2 from "../../assets/product.svg";
+import img2 from "../../assets/Product.svg";
 export const useStyles = createStyles((theme) => ({
   heading: {
     height: "350px",
@@ -70,10 +70,10 @@ export const useStyles = createStyles((theme) => ({
       backgroundColor: "rgb(0,0,0,0.5)",
     },
   },
-  date:{
-    borderLeftStyle:"solid",
-    borderLeftWidth:'3px',
-    borderColor:theme.colors.purple,
-    paddingLeft:"10px"
-  }
+  date: {
+    borderLeftStyle: "solid",
+    borderLeftWidth: "3px",
+    borderColor: theme.colors.purple,
+    paddingLeft: "10px",
+  },
 }));
