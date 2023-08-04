@@ -5,7 +5,7 @@ import Services from "./Services";
 import Acheivements from "./Acheivements";
 import Projects from "./Projects";
 import { useMediaQuery } from "@mantine/hooks";
-import WhyChooseUs from "./whyChooseUs";
+import WhyChooseUs from "./WhyChooseUs";
 import ToolsTech from "./ToolsTech";
 import Testimonials from "./Testimonials";
 
