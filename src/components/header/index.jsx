@@ -1,7 +1,14 @@
-import { Box, Burger, Flex, Group, Text, useMantineTheme } from "@mantine/core";
+import {
+  Box,
+  Burger,
+  Flex,
+  Group,
+  Text,
+  useMantineTheme,
+  Anchor,
+} from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Mail, Phone } from "tabler-icons-react";
 import fb from "../../assets/facebook.svg";
@@ -9,20 +16,15 @@ import ig from "../../assets/instagram.svg";
 import lk from "../../assets/linkedin.svg";
 import logo from "../../assets/logo.svg";
 import yt from "../../assets/youtube.svg";
-import { backendUrl } from "../../constants";
 import { useStyles } from "./styles";
+import { Context } from "../../context/context";
 
 const Header = ({ opened, toggle }) => {
   const isMobile = useMediaQuery("(max-width: 1100px)");
   const theme = useMantineTheme();
   const navigate = useNavigate();
   const { classes } = useStyles({ opened });
-  const [cat, setCat] = useState([]);
-  useEffect(() => {
-    axios
-      .get(backendUrl + "/category/get_all")
-      .then((res) => setCat(res.data.data));
-  }, []);
+  const { aboutUs: data } = useContext(Context);
   return (
     <>
       <Box
@@ -43,18 +45,32 @@ const Header = ({ opened, toggle }) => {
         >
           <Group spacing={"xs"}>
             <Phone color={theme.colors.purple} />
-            <Text>+92 345 5893337</Text>
+            <Text>{data?.primaryContact}</Text>
           </Group>
           <Group spacing={"xs"}>
             <Mail color={theme.colors.purple} />
-            <Text>info@decimalsolution.com</Text>
+            <Anchor href={`mailto:${data?.primaryEmail}`}>
+              {data?.primaryEmail}
+            </Anchor>
           </Group>
         </Flex>
         <Flex gap={"lg"} align={"center"}>
-          <img src={fb} width={"30px"} className={classes.icon} />
-          <img src={ig} width={"30px"} className={classes.icon} />
-          <img src={yt} width={"30px"} className={classes.icon} />
-          <img src={lk} width={"30px"} className={classes.icon} />
+          <Anchor className={classes.icon} href={data?.facebook} target="_blank">
+            <img src={fb} width={"30px"} />
+          </Anchor>
+          <Anchor
+            className={classes.icon}
+            href={data?.instagram}
+            target="_blank"
+          >
+            <img src={ig} width={"30px"} />
+          </Anchor>
+          <Anchor className={classes.icon} href={data?.youtube} target="_blank">
+            <img src={yt} width={"30px"} />
+          </Anchor>
+          <Anchor className={classes.icon} href={data?.linkedIn} target="_blank">
+            <img src={lk} width={"30px"} className={classes.icon} />
+          </Anchor>
         </Flex>
       </Box>
       <Box

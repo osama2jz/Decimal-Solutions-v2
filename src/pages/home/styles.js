@@ -21,8 +21,11 @@ export const useStyles = createStyles((theme) => ({
     padding: "20px",
     borderRadius: "10px",
     gap: "10px",
-    marginLeft: "10px",
+    marginLeft: "50px",
     cursor: "pointer",
+    [`@media (max-width: 1000px)`]: {
+    marginLeft: "30px",
+    },
   },
   achievement: {
     padding: "50px",
@@ -109,7 +112,7 @@ export const useStyles = createStyles((theme) => ({
       top: "12%",
     },
     ":nth-child(2)": {
-      top: "34%",
+      top: "33%",
       left: "5%",
     },
     ":nth-child(3)": {
@@ -117,7 +120,7 @@ export const useStyles = createStyles((theme) => ({
       left: "5%",
     },
     ":nth-child(4)": {
-      top: "74%",
+      top: "75%",
     },
     [`@media (max-width: 1150px)`]: {
       position: "static",

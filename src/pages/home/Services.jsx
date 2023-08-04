@@ -1,18 +1,25 @@
 import { Carousel } from "@mantine/carousel";
-import { Box, Title, useMantineTheme } from "@mantine/core";
-import React, { useState } from "react";
+import { Box, Skeleton, Title, useMantineTheme } from "@mantine/core";
+import React, { useEffect, useState } from "react";
 import ServiceCard from "./ServiceCard";
 import { useStyles } from "./styles";
+import axios from "axios";
+import { backendUrl } from "../../constants";
+import { useNavigate } from "react-router-dom";
 
 const Services = () => {
   const { classes } = useStyles();
   const theme = useMantineTheme();
-  const [cat, setCat] = useState([{}, {}, {}]);
-  // useEffect(() => {
-  //   axios
-  //     .get(backendUrl + "/category/get_all")
-  //     .then((res) => setCat(res.data.data));
-  // }, []);
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const [services, setServices] = useState([{}, {}, {}]);
+  useEffect(() => {
+    setIsLoading(true);
+    axios.get(backendUrl + "/api/v1/web/services").then((res) => {
+      setServices(res.data.data);
+      setIsLoading(false);
+    });
+  }, []);
   return (
     <Box className={classes.services}>
       <Title align="center" color={theme.colors.purple} fw={400}>
@@ -35,10 +42,19 @@ const Services = () => {
           { maxWidth: "sm", slideSize: "100%", slideGap: 0 },
         ]}
       >
-        {cat.map((obj, ind) => {
+        {services.map((obj, ind) => {
           return (
             <Carousel.Slide key={ind}>
-              <ServiceCard title={obj?.name} description={obj?.description} />
+              {isLoading ? (
+                <Skeleton w={250} h={250} ml="50px" />
+              ) : (
+                <ServiceCard
+                  title={obj?.title}
+                  onClick={() => navigate("/services")}
+                  picture={obj?.homeImage}
+                  description={obj?.shortDescription}
+                />
+              )}
             </Carousel.Slide>
           );
         })}

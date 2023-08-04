@@ -3,31 +3,36 @@ import {
   Flex,
   Group,
   Image,
+  Loader,
   RingProgress,
   Stack,
   Text,
   Title,
   useMantineTheme,
 } from "@mantine/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useStyles } from "./styles";
 import whoWeAre from "../../assets/whoWeAre.png";
 import whatWeDo from "../../assets/whatWeDo.png";
 import osam from "../../assets/osama.jpg";
 import { useMediaQuery } from "@mantine/hooks";
+import axios from "axios";
+import { backendUrl } from "../../constants";
 
 const AboutUs = () => {
   const { classes } = useStyles();
   const theme = useMantineTheme();
   const isMobile = useMediaQuery("(max-width: 1000px)");
-  const [people, setPeople] = useState([
-    { name: "Muhammad Usama", role: "Web Developer", img: osam },
-    { name: "Muhammad Usama", role: "Web Developer", img: osam },
-    { name: "Muhammad Usama", role: "Web Developer", img: osam },
-    { name: "Muhammad Usama", role: "Web Developer", img: osam },
-    { name: "Muhammad Usama", role: "Web Developer", img: osam },
-    { name: "Muhammad Usama", role: "Web Developer", img: osam },
-  ]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [profileCards, setProfileCards] = useState([]);
+
+  useEffect(() => {
+    setIsLoading(true);
+    axios.get(backendUrl + "/api/v1/web/teamMembers").then((res) => {
+      setProfileCards(res.data.data);
+      setIsLoading(false);
+    });
+  }, []);
   return (
     <Box>
       <Box className={classes.heading}>
@@ -181,17 +186,28 @@ const AboutUs = () => {
           justify={"center"}
           rowGap={"30px"}
         >
-          {people.map((person, ind) => {
-            return (
-              <Stack key={ind} w={"270px"} spacing={"0px"} align="center">
-                <Image src={person.img} width={"250px"} radius={"xl"} />
-                <Text fw={"bold"} fz={"lg"}>
-                  {person.name}
-                </Text>
-                <Text color={theme.colors.blue}>{person.role}</Text>
-              </Stack>
-            );
-          })}
+          {isLoading ? (
+            <Loader color={theme.colors.purple} />
+          ) : (
+            profileCards.map((person, ind) => {
+              return (
+                <Stack key={ind} w={"270px"} spacing={"0px"} align="center">
+                  <Image
+                    src={person.teamMemberImage}
+                    width={"250px"}
+                    height={"250px"}
+                    radius={"xl"}
+                  />
+                  <Text fw={"bold"} fz={"lg"}>
+                    {person.teamMemberName}
+                  </Text>
+                  <Text color={theme.colors.blue}>
+                    {person.teamMemberTitle}
+                  </Text>
+                </Stack>
+              );
+            })
+          )}
         </Flex>
       </Box>
     </Box>

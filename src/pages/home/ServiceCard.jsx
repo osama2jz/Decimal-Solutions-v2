@@ -3,19 +3,14 @@ import React from "react";
 import img from "../../assets/service.svg";
 import { useStyles } from "./styles";
 
-const ServiceCard = ({
-  title = "Web App Development",
-  picture,
-  link,
-  description = "We are offering a huge variety of services from web development to web hosting.",
-}) => {
+const ServiceCard = ({ title, picture, link, onClick = null, description }) => {
   const { classes } = useStyles();
+  const handleOnClick = () => {
+    window.open(link, "_blank");
+  };
   return (
-    <Box
-      className={classes.serviceCard}
-      onClick={() => window.open(link, "_blank")}
-    >
-      <Image src={picture || img} width={"100px"} height={"100px"} />
+    <Box className={classes.serviceCard} onClick={onClick ?? handleOnClick}>
+      <Image src={picture || img} width={"140px"} height={"100px"} fit="fill" />
       <Text fw={"500"} fz="lg">
         {title}
       </Text>
