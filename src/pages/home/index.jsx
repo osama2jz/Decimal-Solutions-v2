@@ -13,15 +13,30 @@ const Home = () => {
   const isMobile = useMediaQuery("(max-width: 1000px)");
   return (
     <Box>
-      <Carousel withIndicators height={isMobile ? 250 : 500}>
+      <Carousel withIndicators height={isMobile ? 200 : 500}>
         <Carousel.Slide>
-          <Image src={img1} fit="contain" />
+          <img
+            src={img1}
+            width={"100%"}
+            height="100%"
+            style={{ objectFit: "cover" }}
+          />
         </Carousel.Slide>
         <Carousel.Slide>
-          <Image src={img1} fit="cover" />
+          <img
+            src={img1}
+            width={"100%"}
+            height="100%"
+            style={{ objectFit: "cover" }}
+          />
         </Carousel.Slide>
         <Carousel.Slide>
-          <Image src={img1} fit="cover" />
+          <img
+            src={img1}
+            width={"100%"}
+            height="100%"
+            style={{ objectFit: "cover" }}
+          />
         </Carousel.Slide>
       </Carousel>
       <Services />

@@ -5,7 +5,7 @@ export const useStyles = createStyles((theme) => ({
   services: {
     padding: "100px",
     [`@media (max-width: 800px)`]: {
-      padding: "20px",
+      padding: "10px",
     },
   },
   serviceCard: {
@@ -99,7 +99,7 @@ export const useStyles = createStyles((theme) => ({
   whyUs: {
     padding: "0px 100px 100px 100px",
     [`@media (max-width: 1280px)`]: {
-      padding: "20px",
+      padding: "10px",
     },
   },
   whywhy: {

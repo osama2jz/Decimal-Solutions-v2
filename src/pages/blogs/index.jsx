@@ -1,25 +1,16 @@
 import {
   Box,
-  Flex,
-  Group,
-  Image,
   Loader,
-  RingProgress,
   SimpleGrid,
-  Stack,
-  Text,
   Title,
-  useMantineTheme,
+  useMantineTheme
 } from "@mantine/core";
-import React, { useEffect, useState } from "react";
-import { useStyles } from "./styles";
-import whoWeAre from "../../assets/whoWeAre.png";
-import whatWeDo from "../../assets/whatWeDo.png";
-import osam from "../../assets/osama.jpg";
 import { useMediaQuery } from "@mantine/hooks";
-import BlogCard from "./BlogCard";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { backendUrl } from "../../constants";
+import BlogCard from "./BlogCard";
+import { useStyles } from "./styles";
 
 const Blogs = () => {
   const { classes } = useStyles();
