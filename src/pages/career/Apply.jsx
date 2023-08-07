@@ -7,6 +7,7 @@ import {
   TextInput,
   Title,
   useMantineTheme,
+  Stack,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useMediaQuery } from "@mantine/hooks";
@@ -14,9 +15,14 @@ import Dropzone from "../../components/Dropzone";
 import ReactInputMask from "react-input-mask";
 import { Check } from "tabler-icons-react";
 import { useState } from "react";
+import axios from "axios";
+import { backendUrl } from "../../constants";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Apply = () => {
   const theme = useMantineTheme();
+  const navigate = useNavigate();
+  const { job } = useLocation().state;
   const [isLoading, setIsLoading] = useState(false);
   const [submitted, setIsSubmitted] = useState(false);
   const isMobile = useMediaQuery("(max-width: 1000px)");
@@ -47,13 +53,28 @@ const Apply = () => {
       resume: (value) => (!value ? "Upload Resume" : null),
     },
   });
+  const applyforJob = (values) => {
+    setIsLoading(true);
+    values.job = job?._id;
+    axios
+      .post(backendUrl + "/api/v1/web/jobApplications", values)
+      .then((res) => {
+        setIsLoading(false);
+        setIsSubmitted(true);
+      });
+  };
   return (
     <>
       {submitted ? (
-        <Flex justify={"center"} align={"center"} gap={"md"} my="150px">
-          <Check color="purple" size={"50px"} />
-          <Title>Application Submitted</Title>
-        </Flex>
+        <Stack spacing={"md"} align="center" mb="md">
+          <Flex justify={"center"} align={"center"} gap={"md"} my="150px">
+            <Check color="purple" size={"50px"} />
+            <Title>Application Submitted</Title>
+          </Flex>
+          <Button onClick={() => navigate("/careers")} bg={theme.colors.purple}>
+            Go Back
+          </Button>
+        </Stack>
       ) : isLoading ? (
         <Flex justify={"center"} align={"center"} gap={"md"} my="150px">
           <Loader color={theme.colors.purple} />
@@ -61,7 +82,7 @@ const Apply = () => {
         </Flex>
       ) : (
         <form
-          onSubmit={form.onSubmit((values) => console.log(values))}
+          onSubmit={form.onSubmit((values) => applyforJob(values))}
           style={{ textAlign: "center", paddingBlock: "50px" }}
         >
           <Title align="center" color={theme.colors.purple} fw={400}>

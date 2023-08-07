@@ -17,6 +17,7 @@ import ContactUs from "./pages/contactus";
 import Portfolio from "./pages/portfolio";
 import { useEffect } from "react";
 import ViewProject from "./pages/portfolio/ViewProject";
+import ViewBlog from "./pages/blogs/ViewBlog";
 
 function App() {
   const [opened, { toggle }] = useDisclosure(false);
@@ -37,6 +38,7 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/project-detail" element={<ViewProject />} />
         <Route path="/blogs" element={<Blogs />} />
+        <Route path="/blog/:id" element={<ViewBlog />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/careers" element={<Career />}>

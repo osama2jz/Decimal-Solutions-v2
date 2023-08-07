@@ -37,7 +37,7 @@ const ViewJob = () => {
       </Title>
       <Button
         bg={theme.colors.purple}
-        onClick={() => navigate("/careers/apply-job")}
+        onClick={() => navigate("/careers/apply-job", { state: { job: job } })}
         style={{
           display: "flex",
           margin: "auto",
