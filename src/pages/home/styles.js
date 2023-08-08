@@ -21,10 +21,13 @@ export const useStyles = createStyles((theme) => ({
     padding: "20px",
     borderRadius: "10px",
     gap: "10px",
-    marginLeft: "50px",
+    // marginLeft: "50px",
     cursor: "pointer",
+    ":hover": {
+      boxShadow: "0px 10px 20px 0px rgb(0,0,0,0.3)",
+    },
     [`@media (max-width: 1000px)`]: {
-    marginLeft: "30px",
+      // marginLeft: "30px",
     },
   },
   achievement: {
@@ -141,7 +144,7 @@ export const useStyles = createStyles((theme) => ({
     marginBottom: "50px",
     [`@media (max-width: 1000px)`]: {
       backgroundSize: "fill",
-      backgroundPosition:'center'
+      backgroundPosition: "center",
     },
   },
   testSub: {

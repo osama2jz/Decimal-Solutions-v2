@@ -31,7 +31,7 @@ export const useStyles = createStyles((theme) => ({
     alignItems: "center",
     // borderBottom: "1px solid rgb(0,0,0,0.2)",
     backgroundColor: "#f1deee",
-    padding:'20px',
+    padding: "20px",
     ":last-child": {
       border: "none",
     },
@@ -45,8 +45,10 @@ export const useStyles = createStyles((theme) => ({
     },
   },
   stac: {
+    width: "60%",
     [`@media (max-width: 1000px)`]: {
       alignItems: "flex-start",
+      width: "100%",
     },
   },
 }));

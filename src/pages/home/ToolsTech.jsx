@@ -54,7 +54,10 @@ const ToolsTech = () => {
       >
         {tools.map((item, ind) => {
           return (
-            <Carousel.Slide key={ind}>
+            <Carousel.Slide
+              key={ind}
+              style={{ display: "flex", justifyContent: "center" }}
+            >
               <Image
                 src={new URL(`../../assets/${item}`, import.meta.url).href}
                 fit="fill"

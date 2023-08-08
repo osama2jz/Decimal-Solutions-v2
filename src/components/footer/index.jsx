@@ -6,16 +6,18 @@ import lk from "../../assets/linkedin-white.svg";
 import yt from "../../assets/youtube-white.svg";
 import { useContext } from "react";
 import { Context } from "../../context/context";
+import { useMediaQuery } from "@mantine/hooks";
 
 const Footer = () => {
   const { classes } = useStyles();
+  const isMobile = useMediaQuery("(max-width: 1000px)");
   const { aboutUs: data } = useContext(Context);
   return (
     <Box className={classes.footer}>
-      <Text>Contact Us</Text>
-      <Text>{data?.primaryContact}</Text>
-      <Text>{data?.primaryEmail}</Text>
-      <Text>{data?.primaryAddress}</Text>
+      <Text fw={"bold"}>Contact Us</Text>
+      <Text fz={isMobile ? "md" : "lg"}>{data?.primaryContact}</Text>
+      <Text fz={isMobile ? "md" : "lg"}>{data?.primaryEmail}</Text>
+      <Text fz={isMobile ? "md" : "lg"}>{data?.primaryAddress}</Text>
       <Flex gap={"xl"} align={"center"}>
         <Anchor className={classes.icon} href={data?.facebook} target="_blank">
           <img src={fb} width={"30px"} />

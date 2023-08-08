@@ -28,7 +28,6 @@ const Projects = () => {
       </Title>
       <Carousel
         slideSize="33.333333%"
-        slideGap="md"
         mt="xl"
         loop
         styles={{
@@ -42,9 +41,12 @@ const Projects = () => {
       >
         {projectData.map((obj, ind) => {
           return (
-            <Carousel.Slide key={ind}>
+            <Carousel.Slide
+              key={ind}
+              style={{ display: "flex", justifyContent: "center" }}
+            >
               {isLoading ? (
-                <Skeleton w={250} h={250} ml="50px" />
+                <Skeleton w={250} h={250} />
               ) : (
                 <ServiceCard
                   title={obj?.title}

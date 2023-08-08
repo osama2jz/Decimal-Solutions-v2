@@ -9,7 +9,7 @@ import {
 } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Mail, Phone } from "tabler-icons-react";
 import fb from "../../assets/facebook.svg";
 import ig from "../../assets/instagram.svg";
@@ -22,6 +22,7 @@ import { Context } from "../../context/context";
 const Header = ({ opened, toggle }) => {
   const isMobile = useMediaQuery("(max-width: 1100px)");
   const theme = useMantineTheme();
+  const activeLink = useLocation().pathname;
   const navigate = useNavigate();
   const { classes } = useStyles({ opened });
   const { aboutUs: data } = useContext(Context);
@@ -55,7 +56,11 @@ const Header = ({ opened, toggle }) => {
           </Group>
         </Flex>
         <Flex gap={"lg"} align={"center"}>
-          <Anchor className={classes.icon} href={data?.facebook} target="_blank">
+          <Anchor
+            className={classes.icon}
+            href={data?.facebook}
+            target="_blank"
+          >
             <img src={fb} width={"30px"} />
           </Anchor>
           <Anchor
@@ -68,7 +73,11 @@ const Header = ({ opened, toggle }) => {
           <Anchor className={classes.icon} href={data?.youtube} target="_blank">
             <img src={yt} width={"30px"} />
           </Anchor>
-          <Anchor className={classes.icon} href={data?.linkedIn} target="_blank">
+          <Anchor
+            className={classes.icon}
+            href={data?.linkedIn}
+            target="_blank"
+          >
             <img src={lk} width={"30px"} className={classes.icon} />
           </Anchor>
         </Flex>
@@ -76,7 +85,8 @@ const Header = ({ opened, toggle }) => {
       <Box
         style={{
           display: "flex",
-          justifyContent: "space-around",
+          justifyContent: "space-between",
+          paddingInline: isMobile ? "10px" : "80px",
           alignItems: "center",
           paddingBlock: isMobile ? "10px" : "10px",
           position: "sticky",
@@ -97,6 +107,7 @@ const Header = ({ opened, toggle }) => {
           <Link
             className={classes.link}
             to="/"
+            style={{ borderBottom: activeLink === "/" && "2px solid purple" }}
             onClick={() => isMobile && toggle()}
           >
             Home
@@ -104,6 +115,9 @@ const Header = ({ opened, toggle }) => {
           <Link
             className={classes.link}
             to="/about-us"
+            style={{
+              borderBottom: activeLink === "/about-us" && "2px solid purple",
+            }}
             onClick={() => isMobile && toggle()}
           >
             About Us
@@ -111,6 +125,9 @@ const Header = ({ opened, toggle }) => {
           <Link
             className={classes.link}
             to="/services"
+            style={{
+              borderBottom: activeLink === "/services" && "2px solid purple",
+            }}
             onClick={() => isMobile && toggle()}
           >
             Services
@@ -118,6 +135,9 @@ const Header = ({ opened, toggle }) => {
           <Link
             className={classes.link}
             to="/portfolio"
+            style={{
+              borderBottom: activeLink === "/portfolio" && "2px solid purple",
+            }}
             onClick={() => isMobile && toggle()}
           >
             Portfolio
@@ -125,6 +145,9 @@ const Header = ({ opened, toggle }) => {
           <Link
             className={classes.link}
             to="/products"
+            style={{
+              borderBottom: activeLink === "/products" && "2px solid purple",
+            }}
             onClick={() => isMobile && toggle()}
           >
             Our Products
@@ -132,6 +155,9 @@ const Header = ({ opened, toggle }) => {
           <Link
             className={classes.link}
             to="/careers"
+            style={{
+              borderBottom: activeLink === "/careers" && "2px solid purple",
+            }}
             onClick={() => isMobile && toggle()}
           >
             Careers
@@ -140,13 +166,19 @@ const Header = ({ opened, toggle }) => {
           <Link
             className={classes.link}
             to="/blogs"
+            style={{
+              borderBottom: activeLink === "/blogs" && "2px solid purple",
+            }}
             onClick={() => isMobile && toggle()}
           >
             Blogs
           </Link>
           <Link
-            className={classes.link}
+          className={classes.link}
             to="/contact-us"
+            style={{
+              borderBottom: activeLink === "/contact-us" && "2px solid purple",
+            }}
             onClick={() => isMobile && toggle()}
           >
             Contact Us

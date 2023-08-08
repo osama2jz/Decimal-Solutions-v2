@@ -29,8 +29,9 @@ const ViewProject = () => {
         direction={isMobile ? "column" : "row"}
         px={isMobile ? "10px" : "100px"}
         py="md"
+        justify={"space-between"}
       >
-        <Stack w={isMobile ? "100%" : "50%"} style={{textAlign:'left'}}>
+        <Stack w={isMobile ? "100%" : "50%"} style={{ textAlign: "left" }}>
           <Title color={theme.colors.purple} fw={400}>
             How We Did It
           </Title>
@@ -47,12 +48,13 @@ const ViewProject = () => {
           </Box>
           <Text align="justify">{project?.description}</Text>
         </Stack>
-        <img src={project?.coverImage} />
+        <img src={project?.coverImage} width={isMobile ? "100%" : "45%"} />
       </Flex>
       <Button
         bg={theme.colors.purple}
         mb="md"
         leftIcon={<ExternalLink size={20} />}
+        onClick={() => window.open(project?.link, "_blank")}
       >
         View Demo
       </Button>

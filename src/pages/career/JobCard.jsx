@@ -18,7 +18,7 @@ const JobCard = ({ obj }) => {
   const theme = useMantineTheme();
   return (
     <Box className={classes.job}>
-      <Stack spacing={"XS"} align="flex-start">
+      <Stack spacing={"XS"} align="flex-start" style={{ flexBasis: "25%" }}>
         <Text fw={"bold"} fz="lg">
           {obj?.title}
         </Text>

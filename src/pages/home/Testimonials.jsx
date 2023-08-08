@@ -36,7 +36,7 @@ const Testimonials = () => {
       <Title order={4} align="center" fw={200}>
         What do our clients say
       </Title>
-      <Carousel withIndicators>
+      <Carousel withIndicators styles={{indicator:{backgroundColor:theme.colors.purple}}}>
         {data.map((obj, ind) => {
           return (
             <Carousel.Slide key={ind}>

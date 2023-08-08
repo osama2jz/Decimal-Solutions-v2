@@ -98,7 +98,6 @@ const Portfolio = () => {
                   </Title>
                   <Carousel
                     slideSize="33.333333%"
-                    slideGap="md"
                     mt="xl"
                     loop
                     styles={{
@@ -115,7 +114,10 @@ const Portfolio = () => {
                   >
                     {portfolio?.projects?.map((card, index) => {
                       return (
-                        <Carousel.Slide key={index}>
+                        <Carousel.Slide
+                          key={index}
+                          style={{ display: "flex", justifyContent: "center" }}
+                        >
                           <ServiceCard
                             title={card?.title}
                             description={card?.shortDescription}
