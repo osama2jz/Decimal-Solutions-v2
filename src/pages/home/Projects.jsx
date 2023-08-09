@@ -27,7 +27,7 @@ const Projects = () => {
         Some Latest Client Projects
       </Title>
       <Carousel
-        slideSize="33.333333%"
+        slideSize="50%"
         mt="xl"
         loop
         styles={{
@@ -35,7 +35,8 @@ const Projects = () => {
         }}
         align="start"
         breakpoints={[
-          { maxWidth: "md", slideSize: "50%" },
+          { minWidth: "lg", slideSize: "33.33%", slideGap: 0 },
+          { minWidth: "md", slideSize: "50%" },
           { maxWidth: "sm", slideSize: "100%", slideGap: 0 },
         ]}
       >

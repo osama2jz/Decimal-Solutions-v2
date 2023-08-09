@@ -48,7 +48,7 @@ const ViewProject = () => {
           </Box>
           <Text align="justify">{project?.description}</Text>
         </Stack>
-        <img src={project?.coverImage} width={isMobile ? "100%" : "45%"} />
+        <img src={project?.coverImage} width={isMobile ? "45%" : "45%"} style={{margin:'auto'}}/>
       </Flex>
       <Button
         bg={theme.colors.purple}

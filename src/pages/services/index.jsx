@@ -18,7 +18,7 @@ import { backendUrl } from "../../constants";
 const Services = () => {
   const { classes } = useStyles();
   const theme = useMantineTheme();
-  const isMobile = useMediaQuery("(max-width: 1000px)");
+  const isMobile = useMediaQuery("(max-width: 800px)");
   const [services, setServices] = useState([{}, {}, {}]);
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
@@ -52,7 +52,9 @@ const Services = () => {
               >
                 <Divider w={"20%"} size={"lg"} color={theme.colors.purple} />
                 <Title>{obj?.title}</Title>
-                <Text fz={"lg"}>{obj?.description}</Text>
+                <Text fz={"lg"} align="justify">
+                  {obj?.description}
+                </Text>
               </Stack>
               {ind % 2 == 0 && (
                 <img src={obj?.coverImage} width="40%" height="100%" />

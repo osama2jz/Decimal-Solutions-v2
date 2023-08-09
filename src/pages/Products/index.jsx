@@ -19,7 +19,7 @@ import { useMediaQuery } from "@mantine/hooks";
 const Products = () => {
   const { classes } = useStyles();
   const theme = useMantineTheme();
-  const isMobile = useMediaQuery("(max-width: 1000px)");
+  const isMobile = useMediaQuery("(max-width: 800px)");
   const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState([]);
   useEffect(() => {

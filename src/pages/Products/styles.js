@@ -35,7 +35,7 @@ export const useStyles = createStyles((theme) => ({
     ":last-child": {
       border: "none",
     },
-    [`@media (max-width: 1000px)`]: {
+    [`@media (max-width: 800px)`]: {
       margin: "20px",
       gap: "10px",
       flexDirection: "column",
@@ -46,7 +46,7 @@ export const useStyles = createStyles((theme) => ({
   },
   stac: {
     width: "60%",
-    [`@media (max-width: 1000px)`]: {
+    [`@media (max-width: 800px)`]: {
       alignItems: "flex-start",
       width: "100%",
     },

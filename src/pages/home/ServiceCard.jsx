@@ -10,7 +10,7 @@ const ServiceCard = ({ title, picture, link, onClick = null, description }) => {
   };
   return (
     <Box className={classes.serviceCard} onClick={onClick ?? handleOnClick}>
-      <Image src={picture || img} width={"140px"} height={"100px"} fit="fill" />
+      <Image src={picture || img} width={"170px"} height={"170px"} fit="fill" />
       <Text fw={"500"} fz="lg">
         {title}
       </Text>

@@ -4,8 +4,9 @@ import img2 from "../../assets/Testimonial.jpg";
 export const useStyles = createStyles((theme) => ({
   services: {
     padding: "100px",
-    [`@media (max-width: 800px)`]: {
-      padding: "10px",
+    [`@media (max-width: 1000px)`]: {
+      paddingBlock: "10px",
+      paddingInline: "0px",
     },
   },
   serviceCard: {
